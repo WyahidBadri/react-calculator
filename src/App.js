@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState, Component} from 'react';
 import './App.css';
 
-function App() {
+class App extends React.Component {
+
+  constructor(props) {
+     super(props);
+     this.state = {
+       result: 0,
+       num1: 0,
+       num2: 0
+     };
+    
+
+     this.handlenum1Change = this.handlenum1Change.bind(this);
+     this.handlenum2Change = this.handlenum2Change.bind(this);
+    }
+   handlenum1Change (evt) {
+     console.log(evt.target.value);
+     this.setState({ num1: Number(evt.target.value) });
+   }
+   handlenum2Change(evt) {
+     console.log(typeof evt.target.value);
+     this.setState({ num2: Number(evt.target.value) });
+   }
+   addAction =(event)=> {
+     let x = this.state.num1 + this.state.num2
+     this.setState({result: x })
+   }
+   multAction =(event)=> {
+    let x = this.state.num1 * this.state.num2
+    this.setState({result: x })
+  }
+  subAction =(event)=> {
+    let x = this.state.num1 - this.state.num2
+    this.setState({result: x })
+  }
+  divAction =(event)=> {
+    let x = this.state.num1 / this.state.num2
+    this.setState({result: x })
+  }
+
+ render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+     <form>
+         <label>
+           Simple Calculator:
+           <input type="number" onChange={this.handlenum1Change} />
+           <input type="number" onChange={this.handlenum2Change}/>
+           <input type="button" onClick={this.addAction} value="+"/>
+           <input type="button" onClick={this.multAction} value="*"/>
+           <input type="button" onClick={this.divAction} value="/"/>
+           <input type="button" onClick={this.subAction} value="-"/>
+           <input type='text' value={this.state.result} readOnly/>
+         </label>
+       </form>
+     );
+   }
+ }
+ 
+ 
 
 export default App;
