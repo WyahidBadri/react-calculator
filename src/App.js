@@ -10,6 +10,8 @@ class App extends React.Component {
        num1: 0,
        num2: 0
      };
+
+    // const [result, setResult] = useState(0);
     
 
      this.handlenum1Change = this.handlenum1Change.bind(this);
@@ -26,25 +28,29 @@ class App extends React.Component {
    addAction =(event)=> {
      let x = this.state.num1 + this.state.num2
      this.setState({result: x })
+     //setResult(x)
    }
    multAction =(event)=> {
     let x = this.state.num1 * this.state.num2
     this.setState({result: x })
+    //setResult(x)
   }
   subAction =(event)=> {
     let x = this.state.num1 - this.state.num2
     this.setState({result: x })
+    //setResult(x)
   }
   divAction =(event)=> {
     let x = this.state.num1 / this.state.num2
     this.setState({result: x })
+    //setResult(x)
   }
 
  render() {
   return (
      <form>
          <label>
-           Simple Calculator:
+            Calculator:
            <input type="number" onChange={this.handlenum1Change} />
            <input type="number" onChange={this.handlenum2Change}/>
            <input type="button" onClick={this.addAction} value="+"/>
